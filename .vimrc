@@ -1,3 +1,12 @@
+" vim-plug auto install
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+
 let mapleader=";" " hotkey prefix: <leader>
 filetype on
 filetype plugin on
@@ -26,32 +35,41 @@ set incsearch
 set ignorecase
 set wildmenu
 
-" vundle
-set nocompatible              " be iMproved, required
-filetype off                  " required
+call plug#begin('~/.vim/plugged')
+Plug 'dracula/vim', { 'name': 'dracula' }
+Plug 'Lokaltog/vim-powerline'
+Plug 'scrooloose/nerdtree'
+Plug 'klen/python-mode'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'davidhalter/jedi-vim'
+call plug#end()
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+"" vundle
+"set nocompatible              " be iMproved, required
+"filetype off                  " required
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'dracula/vim', { 'name': 'dracula' }
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'scrooloose/nerdtree'
-Plugin 'klen/python-mode'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'davidhalter/jedi-vim'
-
-" add all your plugins here (note older versions of Vundle
-" used Bundle instead of Plugin)
-" ...
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+"" set the runtime path to include Vundle and initialize
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+"" alternatively, pass a path where Vundle should install plugins
+""call vundle#begin('~/some/path/here')
+"
+"" let Vundle manage Vundle, required
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'dracula/vim', { 'name': 'dracula' }
+"Plugin 'Lokaltog/vim-powerline'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'klen/python-mode'
+"Plugin 'nathanaelkane/vim-indent-guides'
+"Plugin 'davidhalter/jedi-vim'
+"
+"" add all your plugins here (note older versions of Vundle
+"" used Bundle instead of Plugin)
+"" ...
+"
+"" All of your Plugins must be added before the following line
+"call vundle#end()            " required
+"filetype plugin indent on    " required
 
 
 " Color Scheme
